@@ -8,10 +8,17 @@ var S = {
     S.Drawing.init('.canvas');
     document.body.classList.add('body--ready');
 
+    // 从URL参数中读取用户名
+    var nameIndex = action.indexOf('?name=');
+    var userName = "你爱的宝";
+    if(nameIndex !== -1){
+      userName = decodeURIComponent(action.substring(nameIndex + 6));
+    }
+
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('Hi 宝贝|祝你|生日快乐|Happy Birthday|打开声音|准备好了吗|3|2|1|#countdown 3||');
+      S.UI.simulate('Hi ' + userName + '|祝你|生日快乐|Happy Birthday|打开声音|准备好了吗|3|2|1|#countdown 3||');
     }
 
     S.Drawing.loop(function () {
